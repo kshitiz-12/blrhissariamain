@@ -1,0 +1,288 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #f5f2eb;
+  --color-cream-dark: #ebe6db;
+  --color-gold: #c5a367;
+  --color-gold-light: #d4b87a;
+  --color-gold-dark: #a8884f;
+  --color-forest: #0b1c14;
+  --color-forest-mid: #143026;
+  --color-ink: #1a1a1a;
+  --color-muted: #6b655c;
+
+  --font-display: "Playfair Display", "Times New Roman", Georgia, serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream text-ink font-sans antialiased;
+    margin: 0;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-gold) 35%, transparent);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes scroll-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(6px);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade-in {
+  animation: fade-in 1.1s ease both;
+}
+
+.animate-float {
+  animation: float-soft 4.5s ease-in-out infinite;
+}
+
+.animate-scroll-hint {
+  animation: scroll-pulse 2.2s ease-in-out infinite;
+}
+
+.delay-1 {
+  animation-delay: 0.12s;
+}
+.delay-2 {
+  animation-delay: 0.24s;
+}
+.delay-3 {
+  animation-delay: 0.36s;
+}
+.delay-4 {
+  animation-delay: 0.48s;
+}
+
+.arch-frame {
+  /* Figma tombstone: full semicircle crown */
+  border-radius: 9999px 9999px 4px 4px;
+  overflow: hidden;
+}
+
+.page-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  color: var(--color-forest);
+}
+
+.page-body {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--color-muted);
+}
+
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--color-gold);
+  color: var(--color-forest);
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: background 0.25s ease;
+}
+
+.btn-gold:hover {
+  background: var(--color-gold-light);
+}
+
+.btn-forest {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--color-forest);
+  color: var(--color-cream);
+  padding: 0.85rem 1.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: background 0.25s ease;
+}
+
+.btn-forest:hover {
+  background: var(--color-forest-mid);
+}
+
+.hero-eyebrow {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.6875rem;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  /* Figma hero: upright high-contrast Playfair/Bodoni — not italic */
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+}
+
+.hero-sub {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  line-height: 1.65;
+}
+
+.hero-stat-value {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: -0.01em;
+}
+
+.hero-stat-label {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+.collection-card img {
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.collection-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Figma hero: subject fills the right half; left stays open for copy */
+.hero-photo {
+  object-position: 72% 20%;
+  transform: scale(1.05);
+  transform-origin: 75% 25%;
+}
+
+@media (min-width: 1024px) {
+  .hero-photo {
+    object-position: 74% 18%;
+    transform: scale(1.06);
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-photo {
+    object-position: 68% 14%;
+    transform: scale(1.15);
+  }
+}
+
+.hero-shade {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(11, 28, 20, 0.96) 0%,
+      rgba(11, 28, 20, 0.82) 28%,
+      rgba(11, 28, 20, 0.45) 52%,
+      rgba(11, 28, 20, 0.12) 72%,
+      rgba(11, 28, 20, 0.05) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(11, 28, 20, 0.45) 0%,
+      transparent 28%,
+      transparent 62%,
+      rgba(11, 28, 20, 0.72) 100%
+    );
+}
