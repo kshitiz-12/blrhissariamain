@@ -39,17 +39,30 @@ export default function Footer() {
           <div>
             <p className="text-[11px] tracking-[0.2em] uppercase text-gold mb-4">Visit</p>
             <p className="text-sm text-cream/75 leading-relaxed font-light">
-              123, M.G. Road<br />
-              Bengaluru - 560001<br />
-              Karnataka, India
+              Old Market Rd<br />
+              Hanumangarh, Rajasthan 335513<br />
+              India
             </p>
+            <a
+              href="https://www.google.com/maps/place/B.L.+Hissaria+Jewellers+pvt.+Ltd.+%7C+Best+Gold+Jewellery+Stores+in+Hanumangarh+%7C+Top+Jewellers+in+Hanumangarh/@29.582178,74.3226232,17z/data=!3m1!4b1!4m6!3m5!1s0x39168cb276b0f067:0x7d6a871cb2f0f384!8m2!3d29.582178!4d74.3251981!16s%2Fg%2F11b5phwcpf?entry=ttu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-block text-[11px] tracking-[0.14em] uppercase text-gold hover:text-gold-light"
+            >
+              View on Maps →
+            </a>
           </div>
         </div>
 
         <div className="md:text-right">
           <p className="text-[11px] tracking-[0.2em] uppercase text-gold mb-4">Appointments</p>
           <p className="text-sm text-cream/75 font-light">Mon–Sat, 10:00 AM – 8:00 PM</p>
-          <p className="mt-2 text-sm text-cream/75">+91 80 4123 4567</p>
+          <a href="tel:+918696200007" className="mt-2 block text-sm text-cream/75 hover:text-gold transition-colors">
+            +91 86962 00007
+          </a>
+          <a href="mailto:Blhissaria@gmail.com" className="mt-1 block text-sm text-cream/75 hover:text-gold transition-colors">
+            Blhissaria@gmail.com
+          </a>
           <Link
             to="/contact"
             className="mt-6 inline-flex items-center gap-2 border border-gold/50 px-5 py-2.5 text-[11px] tracking-[0.14em] uppercase text-gold hover:bg-gold hover:text-forest transition-colors"

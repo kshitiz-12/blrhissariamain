@@ -65,9 +65,9 @@ export default function About() {
           />
           <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/2 bg-gradient-to-l from-transparent via-cream/55 to-cream lg:block" />
 
-          <div className="relative mx-auto grid max-w-[1440px] items-start gap-8 px-5 pb-0 pt-2 md:px-10 lg:grid-cols-12 lg:gap-8 lg:px-14 lg:pt-3">
+          <div className="relative mx-auto grid max-w-[1440px] items-start gap-8 px-5 pb-5 pt-2 md:px-10 md:pb-6 lg:grid-cols-12 lg:gap-8 lg:px-14 lg:pb-7 lg:pt-3">
             {/* Left copy */}
-            <div className="lg:col-span-4 lg:pb-12 lg:pt-2">
+            <div className="lg:col-span-4 lg:pt-2">
               <p className="page-eyebrow">About Us</p>
               <h1 id="about-heading" className="page-title mt-2 text-[2.75rem] md:text-[3.25rem] lg:text-[3.5rem]">
                 A Legacy of Trust
@@ -83,9 +83,9 @@ export default function About() {
               </Link>
             </div>
 
-            {/* Center arch — overlaps into lower band like Figma */}
+            {/* Center arch — shop image */}
             <div className="relative z-20 flex justify-center lg:col-span-4">
-              <figure className="arch-frame relative mb-[-4.5rem] h-[420px] w-[260px] shadow-[0_28px_60px_rgba(11,28,20,0.2)] sm:h-[460px] sm:w-[300px] md:h-[500px] md:w-[330px] lg:mb-[-5.5rem] lg:h-[520px] lg:w-[350px]">
+              <figure className="arch-frame relative h-[420px] w-[260px] shadow-[0_28px_60px_rgba(11,28,20,0.2)] sm:h-[460px] sm:w-[300px] md:h-[500px] md:w-[330px] lg:h-[520px] lg:w-[350px]">
                 <img
                   src="/images/shop-bw-storefront.jpg"
                   alt="Black and white photograph of the B.L. Hissaria Jewellers storefront"
@@ -97,7 +97,7 @@ export default function About() {
             </div>
 
             {/* Right pillars */}
-            <div className="grid grid-cols-2 gap-x-5 gap-y-6 pb-10 sm:gap-y-7 lg:col-span-4 lg:grid-cols-1 lg:gap-y-8 lg:pb-12 lg:pt-2">
+            <div className="grid grid-cols-2 gap-x-5 gap-y-6 pb-2 sm:gap-y-7 lg:col-span-4 lg:grid-cols-1 lg:gap-y-8 lg:pt-2">
               {pillars.map((item) => (
                 <div key={item.title} className="flex items-start gap-3.5">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/50 text-gold">
@@ -118,7 +118,7 @@ export default function About() {
         </section>
 
         {/* Quote + craft film */}
-        <section className="relative z-10 bg-cream px-5 pb-14 pt-0 md:px-10 lg:px-14">
+        <section className="relative z-10 bg-cream px-5 pb-14 pt-4 md:px-10 md:pt-5 lg:px-14 lg:pt-6">
           <div className="mx-auto grid max-w-[1440px] lg:grid-cols-2">
             <div className="relative flex min-h-[240px] items-center border border-gold/30 bg-forest px-8 py-12 md:min-h-[280px] md:px-12">
               <span className="absolute right-7 top-7 text-gold/75" aria-hidden>✦</span>

@@ -40,10 +40,10 @@ export default function Seo({ path, breadcrumbs, override }: SeoProps) {
       <link rel="manifest" href="/site.webmanifest" />
       <meta name="theme-color" content="#0B1C14" />
       <meta name="color-scheme" content="light" />
-      <meta name="geo.region" content="IN-KA" />
-      <meta name="geo.placename" content="Bengaluru" />
-      <meta name="geo.position" content="12.9716;77.5946" />
-      <meta name="ICBM" content="12.9716, 77.5946" />
+      <meta name="geo.region" content="IN-RJ" />
+      <meta name="geo.placename" content="Hanumangarh" />
+      <meta name="geo.position" content="29.582178;74.3251981" />
+      <meta name="ICBM" content="29.582178, 74.3251981" />
 
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content={SITE.name} />

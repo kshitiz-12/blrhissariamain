@@ -4,26 +4,30 @@ export const SITE = {
   url: 'https://www.blhissariajewellers.com',
   locale: 'en_IN',
   language: 'en-IN',
-  phone: '+918041234567',
-  phoneDisplay: '+91 80 4123 4567',
-  email: 'info@blhissariajewellers.com',
-  street: '123, M.G. Road',
-  city: 'Bengaluru',
-  region: 'Karnataka',
-  postal: '560001',
+  phone: '+918696200007',
+  phoneDisplay: '+91 86962 00007',
+  email: 'Blhissaria@gmail.com',
+  street: 'Old Market Rd',
+  city: 'Hanumangarh',
+  region: 'Rajasthan',
+  postal: '335513',
   country: 'IN',
+  latitude: 29.582178,
+  longitude: 74.3251981,
+  mapsUrl:
+    'https://www.google.com/maps/place/B.L.+Hissaria+Jewellers+pvt.+Ltd.+%7C+Best+Gold+Jewellery+Stores+in+Hanumangarh+%7C+Top+Jewellers+in+Hanumangarh/@29.582178,74.3226232,17z/data=!3m1!4b1!4m6!3m5!1s0x39168cb276b0f067:0x7d6a871cb2f0f384!8m2!3d29.582178!4d74.3251981!16s%2Fg%2F11b5phwcpf?entry=ttu',
   hours: 'Mo-Sa 10:00-20:00',
   description:
-    'B.L. Hissaria Jewellers Pvt. Ltd. — exquisite hallmarked jewellery in Bengaluru. Bridal, diamond, traditional and everyday collections crafted with trust for generations.',
+    'B.L. Hissaria Jewellers Pvt. Ltd. — exquisite hallmarked jewellery in Hanumangarh, Rajasthan. Bridal, diamond, traditional and everyday collections crafted with trust for generations.',
   keywords: [
     'B.L. Hissaria Jewellers',
-    'jewellery Bengaluru',
-    'gold jewellery Bangalore',
+    'jewellery Hanumangarh',
+    'gold jewellery Hanumangarh',
+    'best jewellers Hanumangarh',
     'bridal jewellery',
     'diamond jewellery',
     'hallmarked gold',
-    'traditional jewellery',
-    'MG Road jewellers',
+    'traditional jewellery Rajasthan',
   ],
   social: {
     instagram: 'https://www.instagram.com/',
@@ -44,7 +48,7 @@ export type PageSeo = {
 
 export const PAGES: Record<string, PageSeo> = {
   '/': {
-    title: 'B.L. Hissaria Jewellers | Timeless Jewellery in Bengaluru',
+    title: 'B.L. Hissaria Jewellers | Timeless Jewellery in Hanumangarh',
     description: SITE.description,
     path: '/',
     image: '/images/hero-woman.jpg',
@@ -59,14 +63,14 @@ export const PAGES: Record<string, PageSeo> = {
   '/about': {
     title: 'About Us | A Legacy of Trust | B.L. Hissaria Jewellers',
     description:
-      'For generations, B.L. Hissaria has stood for trust, craftsmanship and enduring beauty. Discover our heritage jewellery house in Bengaluru.',
+      'For generations, B.L. Hissaria has stood for trust, craftsmanship and enduring beauty. Discover our heritage jewellery house in Hanumangarh.',
     path: '/about',
     image: '/images/shop-bw-storefront.jpg',
   },
   '/contact': {
-    title: 'Contact & Book Appointment | B.L. Hissaria Jewellers Bengaluru',
+    title: 'Contact & Book Appointment | B.L. Hissaria Jewellers Hanumangarh',
     description:
-      'Visit B.L. Hissaria Jewellers on M.G. Road, Bengaluru or book a private appointment. Call +91 80 4123 4567 · Mon–Sat 10AM–8PM.',
+      'Visit B.L. Hissaria Jewellers in Hanumangarh, Rajasthan or book a private appointment. Call +91 86962 00007 · Mon–Sat 10AM–8PM.',
     path: '/contact',
     image: '/images/contact-arch.jpg',
   },
@@ -90,6 +94,7 @@ export function organizationJsonLd() {
     description: SITE.description,
     telephone: SITE.phone,
     email: SITE.email,
+    hasMap: SITE.mapsUrl,
     priceRange: '₹₹₹',
     currenciesAccepted: 'INR',
     paymentAccepted: 'Cash, Credit Card, UPI',
@@ -103,8 +108,8 @@ export function organizationJsonLd() {
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: 12.9716,
-      longitude: 77.5946,
+      latitude: SITE.latitude,
+      longitude: SITE.longitude,
     },
     openingHoursSpecification: {
       '@type': 'OpeningHoursSpecification',
@@ -115,7 +120,7 @@ export function organizationJsonLd() {
     sameAs: Object.values(SITE.social),
     areaServed: {
       '@type': 'City',
-      name: 'Bengaluru',
+      name: 'Hanumangarh',
     },
   }
 }
