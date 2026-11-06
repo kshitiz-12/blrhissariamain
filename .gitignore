@@ -2,6 +2,11 @@ node_modules
 dist
 .DS_Store
 *.local
+.env
+.env.*
+!.env.example
 figma-ref.jpg
 logo-source.png
 .vite
+server/node_modules
+server/dist

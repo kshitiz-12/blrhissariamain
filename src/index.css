@@ -125,6 +125,45 @@
   animation: sparkle-pulse 2.8s ease-in-out infinite;
 }
 
+@keyframes heritage-gold-shimmer {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 0% 200%;
+  }
+}
+
+@keyframes heritage-node-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(2.1);
+    opacity: 0;
+  }
+}
+
+.heritage-gold-flow {
+  background: linear-gradient(
+    180deg,
+    #a8884f 0%,
+    #c5a367 35%,
+    #e8d5a3 50%,
+    #c5a367 65%,
+    #a8884f 100%
+  );
+  background-size: 100% 200%;
+  animation: heritage-gold-shimmer 1.8s linear infinite;
+  box-shadow: 0 0 10px rgba(197, 163, 103, 0.45);
+}
+
+.heritage-node-pulse {
+  animation: heritage-node-pulse 1.6s ease-out infinite;
+}
+
 .delay-1 {
   animation-delay: 0.12s;
 }

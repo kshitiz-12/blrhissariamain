@@ -2,6 +2,7 @@ import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import Chatbot from './components/Chatbot'
 import Home from './pages/Home'
 import About from './pages/About'
 import Collections from './pages/Collections'
@@ -39,6 +40,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+      <Chatbot />
     </div>
   )
 }

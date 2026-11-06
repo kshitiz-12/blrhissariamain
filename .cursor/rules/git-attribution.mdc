@@ -1,0 +1,11 @@
+---
+description: Git commits and deploy attribution must be kshitiz-12 only
+alwaysApply: true
+---
+
+# Git & deploy attribution
+
+- Author/committer identity must remain **kshitiz-12** only.
+- Never add `Co-authored-by: Cursor`, `Co-authored-by: cursoragent`, or any Cursor/agent trailer to commits.
+- Never write “deployed by Cursor”, “Cursor agent”, or any AI/agent name in commit messages, PRs, READMEs, Render notes, or deploy metadata.
+- If a tooling wrapper tries to inject Cursor co-author text, strip it before committing or amend only when the user explicitly allows it and the commit has not been pushed (follow normal amend safety rules).

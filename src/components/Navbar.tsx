@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import Logo from './Logo'
+import { getLiveGoldRate } from '../lib/goldRate'
 
 const links = [
   { to: '/', label: 'Home' },
@@ -64,30 +65,7 @@ export default function Navbar() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-3">
-          <button
-            type="button"
-            aria-label="Search"
-            className={`hidden p-2 lg:inline-flex ${
-              onDarkHero ? 'text-cream/80 hover:text-gold' : 'text-forest/55 hover:text-forest'
-            }`}
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <circle cx="11" cy="11" r="7" />
-              <path d="M20 20l-3.5-3.5" strokeLinecap="round" />
-            </svg>
-          </button>
-
-          <Link
-            to="/contact"
-            className={`hidden items-center gap-2 px-5 py-2.5 font-sans text-[11px] uppercase tracking-[0.14em] transition-colors lg:inline-flex ${
-              onDarkHero
-                ? 'bg-gold text-forest hover:bg-gold-light'
-                : 'bg-forest text-cream hover:bg-forest-mid'
-            }`}
-          >
-            Book Appointment
-            <span aria-hidden>→</span>
-          </Link>
+          <LiveGoldRate onDark={onDarkHero} className="hidden sm:inline-flex" />
 
           <button
             type="button"
@@ -126,15 +104,71 @@ export default function Navbar() {
                 {link.label}
               </NavLink>
             ))}
-            <Link
-              to="/contact"
-              className="mt-2 inline-flex w-fit items-center gap-2 bg-forest px-5 py-3 font-sans text-[12px] uppercase tracking-[0.12em] text-cream"
-            >
-              Book Appointment →
-            </Link>
+            <LiveGoldRate onDark={false} className="mt-3 flex sm:hidden" />
           </nav>
         </div>
       )}
     </header>
+  )
+}
+
+function LiveGoldRate({ onDark, className = '' }: { onDark: boolean; className?: string }) {
+  const [display, setDisplay] = useState('Loading…')
+  const [title, setTitle] = useState('Fetching live 22kt gold rate…')
+
+  useEffect(() => {
+    let cancelled = false
+    getLiveGoldRate().then((rate) => {
+      if (cancelled) return
+      setDisplay(rate.display)
+      const sourceLabel =
+        rate.source === 'ibja'
+          ? 'IBJA India benchmark'
+          : rate.source === 'spot'
+            ? 'International spot (INR)'
+            : 'Cached / fallback'
+      setTitle(
+        `${sourceLabel} · 22kt per gram · excludes making charges & GST · updated ${new Date(rate.updatedAt).toLocaleString('en-IN')}`,
+      )
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  return (
+    <div
+      className={`inline-flex items-center gap-2 whitespace-nowrap font-sans text-[12px] leading-none md:text-[13px] ${className}`}
+      title={title}
+    >
+      <GoldBarsIcon className={onDark ? 'text-gold' : 'text-[#C5A367]'} />
+      <span className={onDark ? 'text-cream/85' : 'text-[#333]'}>Live Gold Rate:</span>
+      <span
+        className={`border-b pb-px font-medium ${
+          onDark
+            ? 'border-gold/70 text-gold'
+            : 'border-[#6B1F3A] text-[#6B1F3A]'
+        }`}
+      >
+        {display}
+      </span>
+    </div>
+  )
+}
+
+function GoldBarsIcon({ className = '' }: { className?: string }) {
+  return (
+    <svg
+      width="18"
+      height="14"
+      viewBox="0 0 18 14"
+      fill="currentColor"
+      aria-hidden
+      className={`shrink-0 ${className}`}
+    >
+      <path d="M5.5 9.2h7L11.2 12H6.8L5.5 9.2z" opacity="0.95" />
+      <path d="M4.2 5.6h9.6L12.4 8.4H5.6L4.2 5.6z" opacity="0.85" />
+      <path d="M3 2h12l-1.4 2.6H4.4L3 2z" />
+    </svg>
   )
 }

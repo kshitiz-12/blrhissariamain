@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import Seo from '../components/Seo'
 import CraftSteps from '../components/home/CraftSteps'
+import WhyChoose from '../components/home/WhyChoose'
 
 const stats = [
   { value: '50+', label: 'Years of Trust' },
@@ -71,18 +72,9 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="absolute bottom-10 right-8 hidden flex-col items-center gap-3 md:flex">
-          <div className="animate-scroll-hint flex h-12 w-12 items-center justify-center rounded-full border border-cream/35 text-cream/70">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden>
-              <path d="M12 5v14M6 13l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
-          <span className="font-sans text-[0.5625rem] tracking-[0.28em] uppercase text-cream/50">
-            Scroll to Explore
-          </span>
-        </div>
       </section>
 
+      <WhyChoose />
       <CraftSteps />
     </>
   )
