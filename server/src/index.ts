@@ -3,6 +3,7 @@ import express from 'express'
 import rateLimit from 'express-rate-limit'
 import { config, llmStatus } from './config.js'
 import { chatRouter } from './routes/chat.js'
+import { contactRouter } from './routes/contact.js'
 
 const app = express()
 
@@ -14,15 +15,14 @@ app.use(
 )
 app.use(express.json({ limit: '32kb' }))
 
-app.use(
-  '/api/chat',
-  rateLimit({
-    windowMs: 60_000,
-    limit: 40,
-    standardHeaders: true,
-    legacyHeaders: false,
-  }),
-)
+const apiLimiter = rateLimit({
+  windowMs: 60_000,
+  limit: 40,
+  standardHeaders: true,
+  legacyHeaders: false,
+})
+app.use('/api/chat', apiLimiter)
+app.use('/api/contact', apiLimiter)
 
 app.get('/', (_req, res) => {
   res.json({ service: 'blhissaria-sunehri', ok: true })
@@ -39,6 +39,7 @@ app.get('/api/health', (_req, res) => {
 })
 
 app.use('/api/chat', chatRouter)
+app.use('/api/contact', contactRouter)
 
 app.listen(config.port, '0.0.0.0', () => {
   const llm = llmStatus()

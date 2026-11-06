@@ -1,7 +1,7 @@
 export const SITE = {
   name: 'B.L. Hissaria Jewellers Pvt. Ltd.',
   shortName: 'B.L. Hissaria',
-  url: 'https://www.blhissariajewellers.com',
+  url: 'https://www.blhissaria.com',
   locale: 'en_IN',
   language: 'en-IN',
   phone: '+918696200007',

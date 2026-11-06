@@ -137,57 +137,7 @@ export default function CraftSteps() {
         </div>
       </div>
 
-      {/* C. The Showroom Experience */}
-      <div className="mx-auto max-w-[1440px] px-5 py-14 md:px-10 md:py-16 lg:px-14 lg:py-20">
-        <div className="max-w-2xl">
-          <p className="page-eyebrow">C · Showroom</p>
-          <h3 className="page-title mt-2 text-[2rem] md:text-[2.5rem]">
-            The Showroom Experience
-          </h3>
-          <p className="page-body mt-3">
-            Step inside — jewellery displays, quiet consultations and the warmth of a house built on
-            trust. Imagine your visit.
-          </p>
-        </div>
-
-        <div className="mt-10 grid gap-4 md:grid-cols-12 md:gap-5">
-          <figure className="relative overflow-hidden md:col-span-7 md:row-span-2">
-            <img
-              src="/images/storefront-arch.jpg"
-              alt="B.L. Hissaria showroom interior arch"
-              className="h-full min-h-[280px] w-full object-cover md:min-h-[420px]"
-              loading="lazy"
-            />
-            <figcaption className="absolute bottom-5 left-5 font-sans text-[0.65rem] tracking-[0.2em] uppercase text-cream/90">
-              Showroom Interiors
-            </figcaption>
-          </figure>
-          <figure className="relative overflow-hidden md:col-span-5">
-            <img
-              src="/images/craftsman-work.jpg"
-              alt="Jewellery display and craftsmanship"
-              className="aspect-[4/3] w-full object-cover md:aspect-auto md:h-full md:min-h-[200px]"
-              loading="lazy"
-            />
-            <figcaption className="absolute bottom-4 left-4 font-sans text-[0.65rem] tracking-[0.2em] uppercase text-cream/90">
-              Jewellery Displays
-            </figcaption>
-          </figure>
-          <figure className="relative overflow-hidden md:col-span-5">
-            <img
-              src="/images/contact-arch.jpg"
-              alt="Personal consultation atmosphere"
-              className="aspect-[4/3] w-full object-cover md:aspect-auto md:h-full md:min-h-[200px]"
-              loading="lazy"
-            />
-            <figcaption className="absolute bottom-4 left-4 font-sans text-[0.65rem] tracking-[0.2em] uppercase text-cream/90">
-              Personal Consultations
-            </figcaption>
-          </figure>
-        </div>
-      </div>
-
-      {/* D. Trust & Transparency */}
+      {/* C. Trust & Transparency */}
       <div className="bg-forest">
         <div className="mx-auto grid max-w-[1440px] lg:grid-cols-2">
           <div className="relative min-h-[280px] overflow-hidden md:min-h-[360px]">
@@ -200,7 +150,7 @@ export default function CraftSteps() {
             <div className="absolute inset-0 bg-forest/45" />
             <div className="absolute bottom-8 left-8 right-8">
               <p className="font-sans text-[0.65rem] tracking-[0.22em] uppercase text-gold">
-                D · Trust
+                C · Trust
               </p>
               <p className="mt-2 font-display text-3xl text-cream md:text-4xl">
                 Trust &amp; Transparency
@@ -225,11 +175,11 @@ export default function CraftSteps() {
         </div>
       </div>
 
-      {/* E. Visit Our Showroom */}
+      {/* D. Visit Our Showroom */}
       <div className="mx-auto max-w-[1440px] px-5 py-14 md:px-10 md:py-16 lg:px-14 lg:py-20">
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-12 lg:items-start">
           <div>
-            <p className="page-eyebrow">E · Visit</p>
+            <p className="page-eyebrow">D · Visit</p>
             <h3 className="page-title mt-2 text-[2rem] md:text-[2.5rem]">
               Visit Our Showroom
             </h3>

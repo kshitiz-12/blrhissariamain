@@ -5,12 +5,39 @@ import { SITE } from '../seo/site'
 const MAP_EMBED =
   'https://maps.google.com/maps?q=29.582178,74.3251981&hl=en&z=16&output=embed'
 
-export default function Contact() {
-  const [sent, setSent] = useState(false)
+const API_BASE = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '')
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+export default function Contact() {
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
+
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setSent(true)
+    if (status === 'sending') return
+
+    const form = e.currentTarget
+    const fd = new FormData(form)
+    const payload = {
+      name: String(fd.get('name') || '').trim(),
+      email: String(fd.get('email') || '').trim(),
+      phone: String(fd.get('phone') || '').trim(),
+      enquiry: String(fd.get('enquiry') || '').trim(),
+      message: String(fd.get('message') || '').trim(),
+    }
+
+    setStatus('sending')
+    try {
+      const endpoint = API_BASE ? `${API_BASE}/api/contact` : '/api/contact'
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      if (!res.ok) throw new Error(`contact ${res.status}`)
+      setStatus('sent')
+      form.reset()
+    } catch {
+      setStatus('error')
+    }
   }
 
   return (
@@ -26,7 +53,6 @@ export default function Contact() {
       <div className="bg-cream pt-16 md:pt-[72px]">
         <section className="mx-auto max-w-[1440px] px-5 py-10 md:px-10 md:py-12 lg:px-14 lg:py-14">
           <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-0">
-            {/* Left — Get in Touch */}
             <div className="lg:col-span-4 lg:pr-10 xl:pr-14">
               <p className="page-eyebrow">Get in Touch</p>
               <h1 className="page-title mt-3 text-[2.5rem] leading-[1.1] md:text-[3.1rem] lg:text-[3.35rem]">
@@ -112,14 +138,20 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Center — Form */}
             <div className="border-forest/10 lg:col-span-4 lg:border-l lg:px-10 xl:px-12">
               <p className="page-eyebrow">Send us a Message</p>
 
-              {sent ? (
+              {status === 'sent' ? (
                 <div className="mt-16 text-center">
                   <p className="font-display text-3xl text-forest">Thank you.</p>
                   <p className="page-body mt-3">We’ve received your message and will respond shortly.</p>
+                  <button
+                    type="button"
+                    className="btn-gold mt-8"
+                    onClick={() => setStatus('idle')}
+                  >
+                    Send another →
+                  </button>
                 </div>
               ) : (
                 <form className="mt-6 space-y-3.5" onSubmit={onSubmit}>
@@ -159,14 +191,22 @@ export default function Contact() {
                       className="w-full resize-none border border-forest/15 bg-cream-dark/40 px-4 py-3.5 font-sans text-sm text-forest placeholder:text-muted outline-none transition-colors focus:border-gold"
                     />
                   </div>
-                  <button type="submit" className="btn-forest mt-2 w-full justify-center">
-                    Send Message →
+                  {status === 'error' && (
+                    <p className="text-sm text-red-800">
+                      Couldn’t send right now. Please try again, or WhatsApp {SITE.phoneDisplay}.
+                    </p>
+                  )}
+                  <button
+                    type="submit"
+                    disabled={status === 'sending'}
+                    className="btn-forest mt-2 w-full justify-center disabled:opacity-60"
+                  >
+                    {status === 'sending' ? 'Sending…' : 'Send Message →'}
                   </button>
                 </form>
               )}
             </div>
 
-            {/* Right — Arch visual */}
             <div className="flex justify-center lg:col-span-4 lg:justify-end">
               <figure className="arch-frame relative h-[460px] w-[260px] shadow-[0_24px_50px_rgba(11,28,20,0.18)] sm:h-[520px] sm:w-[300px] md:h-[560px] md:w-[320px] lg:h-[580px] lg:w-[340px]">
                 <img
@@ -184,7 +224,6 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Maps add-on */}
           <div className="mt-14 border-t border-forest/10 pt-10 md:mt-16 md:pt-12">
             <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
               <div>

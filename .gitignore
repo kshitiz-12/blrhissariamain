@@ -5,6 +5,7 @@ dist
 .env
 .env.*
 !.env.example
+!.env.production
 figma-ref.jpg
 logo-source.png
 .vite

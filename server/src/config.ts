@@ -10,6 +10,8 @@ function parseOrigins(): string[] {
   const raw = [
     process.env.CLIENT_ORIGIN,
     process.env.CLIENT_ORIGINS,
+    'https://www.blhissaria.com',
+    'https://blhissaria.com',
     'http://localhost:5173',
     'http://127.0.0.1:5173',
   ]
