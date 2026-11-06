@@ -1,0 +1,29 @@
+# Blueprint: https://dashboard.render.com/blueprints
+# Deploys the Sunehri chat API from /server
+services:
+  - type: web
+    name: blhissaria-sunehri-api
+    runtime: node
+    plan: free
+    region: singapore
+    rootDir: server
+    buildCommand: npm install --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22.11.0"
+      - key: CLIENT_ORIGIN
+        sync: false
+      - key: CLIENT_ORIGINS
+        sync: false
+      - key: OWNER_EMAIL
+        sync: false
+      - key: OWNER_PHONE
+        sync: false
+      - key: CALLMEBOT_APIKEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-3.8-flash
