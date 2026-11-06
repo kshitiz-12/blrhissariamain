@@ -2,6 +2,7 @@ import cors from 'cors'
 import express from 'express'
 import rateLimit from 'express-rate-limit'
 import { config, llmStatus } from './config.js'
+import { mailStatus } from './services/mail.js'
 import { chatRouter } from './routes/chat.js'
 import { contactRouter } from './routes/contact.js'
 
@@ -30,11 +31,14 @@ app.get('/', (_req, res) => {
 
 app.get('/api/health', (_req, res) => {
   const llm = llmStatus()
+  const mail = mailStatus()
   res.json({
     ok: true,
     llmConfigured: llm.configured,
     provider: llm.provider,
     model: llm.model,
+    smtpConfigured: mail.smtpConfigured,
+    ownerEmail: mail.ownerEmail,
   })
 })
 

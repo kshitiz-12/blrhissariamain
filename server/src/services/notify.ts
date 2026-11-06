@@ -1,42 +1,23 @@
 import { config } from '../config.js'
 import { formatLeadSummary, type IntentState, type LeadDraft, shouldNotifyOwner } from './intent.js'
+import { sendOwnerMail } from './mail.js'
 
 const notified = new Set<string>()
 
-export async function sendFormSubmitEmail(
-  to: string,
-  payload: Record<string, string>,
-): Promise<void> {
-  const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(to)}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-    body: JSON.stringify({
-      _template: 'table',
-      _captcha: 'false',
-      ...payload,
-    }),
-    signal: AbortSignal.timeout(12000),
-  })
-  if (!res.ok) {
-    const body = await res.text().catch(() => '')
-    throw new Error(`formsubmit ${res.status} ${body.slice(0, 160)}`)
-  }
-}
-
 async function sendOwnerEmail(lead: LeadDraft, intent: IntentState, summary: string): Promise<boolean> {
-  await sendFormSubmitEmail(config.ownerEmail, {
-    _subject: `[Genuine Lead] ${lead.name ?? 'Customer'} — B.L. Hissaria`,
-    name: lead.name ?? 'Not shared',
-    phone: lead.phone ?? '',
-    interest: lead.interest ?? '',
-    occasion: lead.occasion ?? '',
-    timeline: lead.timeline ?? '',
-    budget: lead.budget ?? '',
-    intent: `${intent.label} (score ${intent.score})`,
-    message: summary,
+  await sendOwnerMail({
+    subject: `[Genuine Lead] ${lead.name ?? 'Customer'} — B.L. Hissaria`,
+    text: summary,
+    replyTo: undefined,
+    fields: {
+      name: lead.name ?? 'Not shared',
+      phone: lead.phone ?? '',
+      interest: lead.interest ?? '',
+      occasion: lead.occasion ?? '',
+      timeline: lead.timeline ?? '',
+      budget: lead.budget ?? '',
+      intent: `${intent.label} (score ${intent.score})`,
+    },
   })
   return true
 }
@@ -48,14 +29,16 @@ export async function sendContactEmail(input: {
   enquiry: string
   message: string
 }): Promise<void> {
-  await sendFormSubmitEmail(config.ownerEmail, {
-    _subject: `[Contact] ${input.enquiry} — ${input.name}`,
-    name: input.name,
-    email: input.email,
-    phone: input.phone ?? '',
-    enquiry: input.enquiry,
-    message: input.message,
-    replyto: input.email,
+  await sendOwnerMail({
+    subject: `[Contact] ${input.enquiry} — ${input.name}`,
+    text: input.message,
+    replyTo: input.email,
+    fields: {
+      name: input.name,
+      email: input.email,
+      phone: input.phone ?? '',
+      enquiry: input.enquiry,
+    },
   })
 }
 

@@ -30,6 +30,11 @@ export const config = {
   ownerPhone: process.env.OWNER_PHONE || '+918696200007',
   /** CallMeBot WhatsApp API key for OWNER_PHONE (personal alerts). */
   callMeBotApiKey: cleanKey(process.env.CALLMEBOT_APIKEY),
+  /** Gmail / SMTP for reliable owner emails (preferred over FormSubmit). */
+  smtpHost: (process.env.SMTP_HOST || 'smtp.gmail.com').trim(),
+  smtpPort: Number(process.env.SMTP_PORT || 465),
+  smtpUser: (process.env.SMTP_USER || process.env.OWNER_EMAIL || '').trim(),
+  smtpPass: cleanKey(process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD),
   geminiApiKey: cleanKey(process.env.GEMINI_API_KEY),
   geminiModel: process.env.GEMINI_MODEL || 'gemini-3.8-flash',
   openaiApiKey: cleanKey(process.env.OPENAI_API_KEY),
